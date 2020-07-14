@@ -8,7 +8,7 @@ library(caret)   ### confusion matrix
 ui <- fluidPage(
   
   # Application title
-  titlePanel("Upload CICA partitioning and loss data"),
+  titlePanel("C-ICA Dashboard"),
   
   # Sidebar with fileinput selection and reactive model input 
   sidebarLayout(
@@ -28,8 +28,8 @@ ui <- fluidPage(
       
       verticalLayout(
         h2("ARI", align = "center"),verbatimTextOutput('ARI'),
-        h2("Table", align = "center"),verbatimTextOutput('Table'),
-        plotlyOutput("Plot") 
+        h2("Table", align = "center"),verbatimTextOutput('Table')
+        #plotlyOutput("Plot") 
         
       )
       
@@ -56,7 +56,7 @@ server <- function(input, output) {
   output$reactiveInput1 <- renderUI({
     dat <- data()
     dat <- dat$DFlab
-    selectInput('labsel', 'Select labels', names( dat )[1:2] )
+    selectInput('labsel', 'Select labels', names( dat )[1] )
   })
   
   output$reactiveInput2 <- renderUI({
@@ -87,14 +87,14 @@ server <- function(input, output) {
                prop.t = F, prop.chisq = F, chisq = F)
   })
   
-  output$Plot <- renderPlotly({
-    dat <- data()
-    dat <- dat$DFloss
-    dat <- dat[[ input$datsel ]]
-    plotdat <- data.frame(y = (dat/1000), x = 1:length(dat))
+  #output$Plot <- renderPlotly({
+  #  dat <- data()
+  #  dat <- dat$DFloss
+  #  dat <- dat[[ input$datsel ]]
+  #  plotdat <- data.frame(y = (dat/1000), x = 1:length(dat))
     
-    plot_ly(plotdat, x = ~x[-1], y = ~y[-1], type = 'scatter', mode = 'lines')
-  })
+  #  plot_ly(plotdat, x = ~x[-1], y = ~y[-1], type = 'scatter', mode = 'lines')
+  #})
 }
 
 # Run the application 
