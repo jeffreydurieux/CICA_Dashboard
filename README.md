@@ -9,3 +9,5 @@ Additionally the loss function value of a C-ICA solution is shown.
 
 - TODO: model selection panel
 - TODO: Sr viewer and Air viewer
+
+The R-shiny application is deployed on: [C-ICA Dashboard](https://jeffdux.shinyapps.io/CICA_Dashboard/)
